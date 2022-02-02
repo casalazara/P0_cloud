@@ -6,7 +6,7 @@ from flask_restful import Api
 from models.model import db
 from schemas.schema import ma
 from views.event import ResourceEvent, ResourceEventDetail
-from views.user import SignIn, SignUp 
+from views.user import SignIn, SignUp
 
 app = Flask(__name__)
 app.config.from_object("settings")

@@ -1,5 +1,6 @@
 from app import ma
 
+
 class EventSchema(ma.Schema):
     class Meta:
         fields = (
@@ -13,5 +14,7 @@ class EventSchema(ma.Schema):
             "is_virtual",
             "owner",
         )
+
+
 event_schema = EventSchema()
 events_schema = EventSchema(many=True)

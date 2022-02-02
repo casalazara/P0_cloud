@@ -1,5 +1,7 @@
-from app import db 
 from enum import Enum
+
+from app import db
+
 
 class EventCategory(str, Enum):
     conference = "conference"
@@ -9,7 +11,7 @@ class EventCategory(str, Enum):
 
 
 class Event(db.Model):
-    __tablename__ = 'event'
+    __tablename__ = "event"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), nullable=False)
     category = db.Column(db.Enum(EventCategory), nullable=False)
