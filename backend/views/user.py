@@ -11,7 +11,7 @@ from models.user import User
 class SignIn(Resource):
     def post(self):
         user = User.query.filter_by(email=request.json["email"]).first()
-        if check_password_hash(user.password, request.json["password"]):
+        if check_password_hash(user.password, request.json["password"].encode("utf-8")):
             access_token = create_access_token(
                 identity=str(user.id), expires_delta=timedelta(hours=2)
             )
@@ -24,7 +24,7 @@ class SignUp(Resource):
     def post(self):
         new_user = User(
             email=request.json["email"],
-            password=generate_password_hash(request.json["password"]),
+            password=generate_password_hash(request.json["password"].encode("utf-8")).decode('utf-8'),
         )
         db.session.add(new_user)
         db.session.commit()
