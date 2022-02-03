@@ -1,6 +1,4 @@
-
-export default function useUser () {
-
+export default function useUser() {
   const parseJwt = (token) => {
     try {
       return JSON.parse(atob(token.split(".")[1]));
@@ -9,15 +7,14 @@ export default function useUser () {
     }
   };
 
-    var isLogged = false;
-    const token = sessionStorage.getItem("accessToken");
-    if (token){
-    var decodedToken=parseJwt(token);
-    var dateNow = new Date();
-    if (decodedToken.exp * 1000 > dateNow.getTime()) 
-        isLogged = true;
+  var isLogged = false;
+  const token = sessionStorage.getItem("accessToken");
+  if (token) {
+    var decodedToken = parseJwt(token);
+    if (decodedToken) {
+      var dateNow = new Date();
+      if (decodedToken.exp * 1000 > dateNow.getTime()) isLogged = true;
     }
-  return isLogged
+  }
+  return isLogged;
 }
-
-
